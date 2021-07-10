@@ -13,7 +13,10 @@ public class DropSpawner extends JavaPlugin
     public void onEnable()
     {
         instance = this;
-        saveDefaultConfig();
+        File file_storage = new File(plugin.getDataFolder(), "/config.yml");
+        if (!file_storage.exists() && !file_storage.isDirectory()) {
+           saveDefaultConfig();
+        }
         config = this.getConfig();
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
     }
